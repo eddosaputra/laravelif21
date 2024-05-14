@@ -30,7 +30,18 @@ class FakultasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       //  dd($request);
+       //validasi data input
+       $val = $request->validate([
+            'nama' => 'required',
+            'singkatan' => 'required'
+
+       ]);
+
+       //simpan ke dalam tabel fakultas
+       Fakultas::create($val);
+       //redirect ke route fakultas
+       return redirect('fakultas.index');
     }
 
     /**
