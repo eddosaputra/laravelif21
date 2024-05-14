@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Universitas MDP</h1>
-    <a href="{{ url('fakultas') }}">List</a> | <a href="{{ url('fakultas/create') }}">Tambah</a>
+    <a href="{{ url('fakultas') }}">List Fakultas</a> | <a href="{{ url('prodi') }}">List Prodi</a> | <a href="{{ url('fakultas/create') }}">Tambah Fakultas</a> | <a href="{{ url('prodi/create') }}">Tambah Prodi</a>
     
     @yield('content')
     

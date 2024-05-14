@@ -33,7 +33,7 @@ class FakultasController extends Controller
        //  dd($request);
        //validasi data input
        $val = $request->validate([
-            'nama' => 'required',
+            'nama' => 'required|unique:fakultas',
             'singkatan' => 'required'
 
        ]);
@@ -41,7 +41,7 @@ class FakultasController extends Controller
        //simpan ke dalam tabel fakultas
        Fakultas::create($val);
        //redirect ke route fakultas
-       return redirect('fakultas.index');
+       return redirect()->route('fakultas.index');
     }
 
     /**
