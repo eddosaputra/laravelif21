@@ -1,7 +1,7 @@
 @extends('layout.main')
 @section('title', 'Tambah Fakultas')
 @section('content')
-    <h2>Tambah Fakultas</h2>
+    {{-- <h2>Tambah Fakultas</h2>
     <p>Ini halaman tambah fakultas</p>
     <form action="{{  route('fakultas.store') }}" method="post">
         @csrf
@@ -16,7 +16,7 @@
             {{ $message }}
         @enderror <br>
         <button type="submit">Simpan</button>
-    </form>
+    </form> --}}
 
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
@@ -25,7 +25,8 @@
             <p class="card-description">
               Formulir tambah fakultas
             </p>
-            <form class="forms-sample">
+            <form class="forms-sample" action="{{ route('fakultas.store') }}" method="post">
+              @csrf
               <div class="form-group">
                 <label for="nama">Nama Fakultas</label>
                 <input type="text" name="nama" id="" value="{{ old('nama') }}" class="form-control" >
@@ -34,25 +35,14 @@
                 @enderror <br>
               </div>
               <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                <label for="singkatan">Singkatan</label>
+                <input type="text" name="singkatan" id="" value="{{ old('singkatan') }}" class="form-control" >
+                @error('singkatan')
+                    {{ $message }}
+                @enderror <br>
               </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputConfirmPassword1">Confirm Password</label>
-                <input type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password">
-              </div>
-              <div class="form-check form-check-flat form-check-primary">
-                <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input">
-                  Remember me
-                <i class="input-helper"></i></label>
-              </div>
-              <button type="submit" class="btn btn-primary mr-2">Submit</button>
-              <button class="btn btn-light">Cancel</button>
+              <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+             <a href="{{ url('fakultas')}}"class="btn btn-light">Cancel</a>
             </form>
           </div>
         </div>
