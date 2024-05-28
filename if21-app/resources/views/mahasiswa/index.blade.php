@@ -17,8 +17,8 @@
                   <tr>
                       <th>NPM</th>
                       <th>Nama Mahasiswa</th>
-                      <th>Kota</th>
-                      <th>Prodi</th>
+                      <th>Nama Prodi</th>
+                      <th>Asal Kota</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -26,8 +26,9 @@
                     <tr>
                         <td>{{ $item->npm }}</td>
                         <td>{{ $item->nama }}</td>
-                        <td>{{ $item->kota->nama }}</td>
                         <td>{{ $item->prodi->nama }}</td>
+                        <td>{{ $item->kota->nama }}</td>
+                        <td><a href="{{ route('mahasiswa.show', $item['id']) }}" class="btn btn-sm btn-info btn-rounded">Show</a></td>
                     </tr>
                     @endforeach
                 </tbody>

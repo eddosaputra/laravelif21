@@ -13,7 +13,7 @@
               @csrf
               <div class="form-group">
                 <label for="npm">npm</label>
-                <input type="text" name="npm" id="" value="{{ old('npm') }}" class="form-control" >
+                <input type="text" maxlength="10" name="npm" id="" value="{{ old('npm') }}" class="form-control" >
                 @error('npm')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror <br>
