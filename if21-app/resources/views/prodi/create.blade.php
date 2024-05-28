@@ -50,7 +50,7 @@
                 @enderror <br>
               </div>
               <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-             <a href="{{ url('fakultas')}}"class="btn btn-light">Cancel</a>
+             <a href="{{ url('prodi')}}"class="btn btn-light">Cancel</a>
             </form>
           </div>
         </div>
