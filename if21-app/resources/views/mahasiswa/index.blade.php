@@ -15,6 +15,7 @@
               <table class="table table-hover">
                 <thead>
                   <tr>
+                      <th>Foto</th>
                       <th>NPM</th>
                       <th>Nama Mahasiswa</th>
                       <th>Nama Prodi</th>
@@ -24,11 +25,19 @@
                 <tbody>
                     @foreach ($mahasiswa as $item)
                     <tr>
+                        <td><img src="{{ url('foto/'.$item['url_foto']) }}"</td>
                         <td>{{ $item->npm }}</td>
                         <td>{{ $item->nama }}</td>
                         <td>{{ $item->prodi->nama }}</td>
                         <td>{{ $item->kota->nama }}</td>
                         <td><a href="{{ route('mahasiswa.show', $item['id']) }}" class="btn btn-sm btn-info btn-rounded">Show</a></td>
+                        <td>
+                        <form action="{{ route('mahasiswa.destroy', $item->id) }}" method="post">
+                          @method('DELETE')
+                          @csrf
+                          <button type="submit" class="btn btn-sm btn-danger btn-rounded">Hapus</button>
+                        </td>
+                        </form>
                     </tr>
                     @endforeach
                 </tbody>
@@ -43,7 +52,7 @@
 <script>
    Swal.fire({
      title: "Good job!",
-     text: "You clicked the button!",
+     text: "{{ session('success') }}",
      icon: "success"
    });
    </script>
