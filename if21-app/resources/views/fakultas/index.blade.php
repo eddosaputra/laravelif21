@@ -24,6 +24,13 @@
                     <tr>
                         <td>{{ $item['nama'] }}</td>
                         <td>{{ $item['singkatan'] }}</td>
+                        <td>
+                          <form action="{{ route('fakultas.destroy', $item->id) }}" method="post">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-danger btn-rounded show_confirm" data-toggle="tooltip" data-nama="{{ $item['nama'] }}" title="hapus">Hapus</button>
+                          </form>
+                          </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -33,17 +40,6 @@
         </div>
       </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
- @if (session('success'))
-<script>
-   Swal.fire({
-     title: "Good job!",
-     text: "You clicked the button!",
-     icon: "success"
-   });
-   </script>
-
-@endif
 @endsection
 
 

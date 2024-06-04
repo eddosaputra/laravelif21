@@ -35,7 +35,7 @@
                         <form action="{{ route('mahasiswa.destroy', $item->id) }}" method="post">
                           @method('DELETE')
                           @csrf
-                          <button type="submit" class="btn btn-sm btn-danger btn-rounded">Hapus</button>
+                          <button type="submit" class="btn btn-sm btn-danger btn-rounded show_confirm" data-toggle="tooltip" data-nama="{{ $item['nama'] }}" title="hapus">Hapus</button>
                         </td>
                         </form>
                     </tr>
@@ -47,17 +47,46 @@
         </div>
       </div>
     </div>
+
+{{-- jquery --}}
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+{{-- Swal success --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  @if (session('success'))
+
 <script>
    Swal.fire({
      title: "Good job!",
      text: "{{ session('success') }}",
      icon: "success"
    });
-   </script>
+  </script>
 
 @endif
+
+<script type="text/javascript">
+ $('.show_confirm').click(function(event) {
+      var form =  $(this).closest("form");
+      var nama = $(this).data("nama");
+      event.preventDefault();
+      Swal.fire({
+         title: `Yakin ingin menghapus data ${nama}?`,
+         text: "Data akan menghilang setelah dihapus!",
+         icon: "warning",
+         showCancelButton: true,
+         confirmButtonColor: "#3085d6",
+         cancelButtonColor: "#d33",
+         confirmButtonText: "Ya, Hapus"
+         }).then((result) => {
+         if (result.isConfirmed) {
+             form.submit();
+         }
+      });
+  });
+
+</script>
 @endsection
 
 

@@ -45,6 +45,11 @@
               <span class="menu-title">Prodi</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('mahasiswa') }}">
+              <i class="mdi mdi-city menu-icon"></i>
+              <span class="menu-title">Mahasiswa</span>
+         
         <li class="nav-item sidebar-category">
           <p>Components</p>
           <span></span>
@@ -321,6 +326,47 @@
   <!-- plugin js for this page -->
   <!-- End plugin js for this page -->
   <!-- Custom js for this page-->
+
+  {{-- jquery --}}
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+{{-- Swal success --}}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (session('success'))
+
+<script>
+ Swal.fire({
+   title: "Good job!",
+   text: "{{ session('success') }}",
+   icon: "success"
+ });
+</script>
+
+@endif
+
+<script type="text/javascript">
+$('.show_confirm').click(function(event) {
+    var form =  $(this).closest("form");
+    var nama = $(this).data("nama");
+    event.preventDefault();
+    Swal.fire({
+       title: `Yakin ingin menghapus data ${nama}?`,
+       text: "Data akan menghilang setelah dihapus!",
+       icon: "warning",
+       showCancelButton: true,
+       confirmButtonColor: "#3085d6",
+       cancelButtonColor: "#d33",
+       confirmButtonText: "Ya, Hapus"
+       }).then((result) => {
+       if (result.isConfirmed) {
+           form.submit();
+       }
+    });
+});
+
+</script>
+
   <script src="{{ url('js/dashboard.js') }}"></script>
   <!-- End custom js for this page-->
 </body>

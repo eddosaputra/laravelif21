@@ -10,5 +10,7 @@ class Fakultas extends Model
 {
     use HasFactory, HasUuids;
 
+    protected $table = 'fakultas';
+
     protected $fillable = ['nama', 'singkatan'];
 }
