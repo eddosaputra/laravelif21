@@ -1,7 +1,7 @@
 @extends('layout.main');
 @section('title', 'Edit Mahasiswa');
 
-@section('content');
+@section('content')
 <div class="col-md-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
@@ -9,12 +9,12 @@
         <p class="card-description">
           Formulir ubah mahasiswa
         </p>
-        <form action="{{ route('mahasiswa.update', $mahasiswa->id) }}" method="POST">
+        <form action="{{ route('mahasiswa.update', $mahasiswa->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-group">
                 <label for="npm">NPM</label>
-                <input type="text" class="form-control" id="npm" name="npm" value="{{ old('npm') ? old('npm') : $mahasiswa ->npm}}">
+                <input type="text" class="form-control" id="npm" name="npm" value="{{ old('npm') ? old('npm') : $mahasiswa ->npm}}" readonly>
                 @error('npm')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
@@ -51,7 +51,7 @@
                 <label for="kota">Kota</label>
                 <select name="kota_id" id="" class="form-control">
                     @foreach ($kota as $item)
-                        <option value="{{ $item['id'] }}">{{ $item['nama'] }}</option>
+                        <option value="{{ $item['id'] }}" {{ old('kota_id') == $item['id'] ? 'selected' : ($mahasiswa['kota_id'] == $item['id'] ? 'selected' : null) }}>{{ $item['nama'] }}</option>
                     @endforeach
                 </select>
                 @error('kota_id')
@@ -62,7 +62,7 @@
                 <label for="prodi">Program Studi</label>
                 <select name="prodi_id" id="" class="form-control">
                     @foreach ($prodi as $item)
-                        <option value="{{ $item['id'] }}">{{ $item['nama'] }}</option>
+                        <option value="{{ $item['id'] }}" {{ old('prodi_id') == $item['id'] ? 'selected' : ($mahasiswa['prodi_id'] == $item['id'] ? 'selected' : null) }}>{{ $item['nama'] }}</option>
                     @endforeach
                 </select>
                 @error('prodi_id')
@@ -71,8 +71,8 @@
             </div>
             <div class="form-group">
                 <label for="foto">Foto</label>
-                <input type="file" class="form-control" id="foto" name="foto">
-                @error('foto')
+                <input type="file" class="form-control" id="foto" name="url_foto">
+                @error('url_foto')
                     <span class="text-danger">{{ $message }}</span> 
                 @enderror
             </div>

@@ -96,7 +96,43 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, Mahasiswa $mahasiswa)
     {
-        //
+        //dd($request);
+        if($request->hasFile('url_foto')){
+            File::delete('foto/'.$mahasiswa->url_foto); //file dihapus
+            $val = $request->validate([
+                'npm' => 'required',
+                'nama' => 'required',
+                'tempat_lahir' => 'required',
+                'tanggal_lahir' => 'required',
+                'alamat' => 'required',
+                'kota_id' => 'required',
+                'prodi_id' => 'required',
+                'url_foto' => 'required|file|mimes:jpg,png,jpeg|max:5000'
+            ]);
+
+            // rename file, misalnya : 2327250001.jpg
+            // ambil ext file
+            $ext = $val['url_foto']->getClientOriginalExtension(); //png / jpg / jpeg
+            $val['url_foto'] = $request->npm.'.'.$ext;
+            //upload file bisa pakai move() atau store()
+            $request->url_foto->move('foto', $val['url_foto']);
+            //foto : folder tujuan public/foto
+        }else{
+            //validasi tanpa foto
+            $val = $request->validate([
+                'npm' => 'required',
+                'nama' => 'required',
+                'tempat_lahir' => 'required',
+                'tanggal_lahir' => 'required',
+                'alamat' => 'required',
+                'kota_id' => 'required',
+                'prodi_id' => 'required'
+            ]);
+        }
+
+        //dd($val);
+        $mahasiswa->update($val);
+        return redirect()->route('mahasiswa.index') ->with('success', $val['nama'].' berhasil diubah');
     }
 
     /**
