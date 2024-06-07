@@ -85,7 +85,10 @@ class MahasiswaController extends Controller
      */
     public function edit(Mahasiswa $mahasiswa)
     {
-        //
+        //dd($mahasiswa);
+        $prodi = Prodi::all();
+        $kota = Kota::all();
+        return view('mahasiswa.edit')->with('kota', $kota)->with('prodi', $prodi)->with('mahasiswa', $mahasiswa);
     }
 
     /**
