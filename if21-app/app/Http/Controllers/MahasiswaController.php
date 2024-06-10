@@ -144,6 +144,6 @@ class MahasiswaController extends Controller
         File::delete('foto/'.$mahasiswa->url_foto); //file dihapus
         $mahasiswa->delete(); // data dihapus
         return redirect()->route('mahasiswa.index') ->with('success', $mahasiswa->nama.' data berhasil dihapus');
-
+        
     }
 }
