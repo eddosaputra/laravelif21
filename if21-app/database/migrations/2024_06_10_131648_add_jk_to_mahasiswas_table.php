@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('mahasiswas', function (Blueprint $table) {
-            //
+            $table->char('jk', 1)->default('L')->after('nama');
         });
     }
 
