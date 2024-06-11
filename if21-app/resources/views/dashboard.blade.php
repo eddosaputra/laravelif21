@@ -89,7 +89,7 @@
     },
     xAxis: {
         categories: [
-        @foreach ($mahasiswaprodi as $item)
+        @foreach($mahasiswaprodi as $item)
             '{{ $item->nama }}',
             @endforeach
         ],

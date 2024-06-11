@@ -30,7 +30,6 @@
           <a class="nav-link" href="{{ url('dashboard') }}">
             <i class="mdi mdi-view-quilt menu-icon"></i>
             <span class="menu-title">Dashboard</span>
-            <div class="badge badge-info badge-pill">2</div>
           </a>
         </li>
         <li class="nav-item">
@@ -266,6 +265,15 @@
                   <i class="mdi mdi-logout text-primary"></i>
                   Logout
                 </a>
+                <form method="POST" action="{{ route('logout') }}">
+                  @csrf
+
+                  <x-responsive-nav-link :href="route('logout')"
+                          onclick="event.preventDefault();
+                                      this.closest('form').submit();">
+                      {{ __('Log Out') }}
+                  </x-responsive-nav-link>
+              </form>
               </div>
             </li>
             <li class="nav-item">
