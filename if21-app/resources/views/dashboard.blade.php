@@ -15,14 +15,11 @@
 
 <figure class="highcharts-figure">
   <div id="container"></div>
-  <p class="highcharts-description">
-    A basic column chart comparing estimated corn and wheat production
-    in some countries.
-
-    The chart is making use of the axis crosshair feature, to highlight
-    the hovered country.
-  </p>
 </figure>
+
+<figure class="highcharts-figure">
+    <div id="container-jk"></div>
+  </figure>
 
         {{-- css --}}
         <style>
@@ -125,6 +122,65 @@
                 @endforeach
             ]
         },
+        
+    ]
+});
+Highcharts.chart('container-jk', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Grafik Jenis Kelamin Mahasiswa di Program Studi',
+        align: 'center'
+    },
+    subtitle: {
+        text:
+            'Source: Aplikasi Akademik',
+        align: 'center'
+    },
+    xAxis: {
+        categories: [
+        @foreach ($mahasiswajk as $item)
+            '{{ $item->nama }}',
+            @endforeach
+        ],
+        crosshair: true,
+        accessibility: {
+            description: 'Program Studi'
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Mahasiswa'
+        }
+    },
+    tooltip: {
+        valueSuffix: ' (Mahasiswa)'
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [
+        {
+            name: 'Laki-laki',
+            data: [
+                @foreach ($mahasiswajk as $item)
+                    {{ $item->laki }},
+                @endforeach
+            ]
+        },
+        {
+            name: 'Perempuan',
+            data: [
+                @foreach ($mahasiswajk as $item)
+                    {{ $item->perempuan }},
+                @endforeach
+            ]
+        }
         
     ]
 });

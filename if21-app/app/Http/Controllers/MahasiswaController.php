@@ -104,6 +104,7 @@ class MahasiswaController extends Controller
                 'nama' => 'required',
                 'tempat_lahir' => 'required',
                 'tanggal_lahir' => 'required',
+                'jk' => 'required',
                 'alamat' => 'required',
                 'kota_id' => 'required',
                 'prodi_id' => 'required',
@@ -124,6 +125,7 @@ class MahasiswaController extends Controller
                 'nama' => 'required',
                 'tempat_lahir' => 'required',
                 'tanggal_lahir' => 'required',
+                'jk' => 'required',
                 'alamat' => 'required',
                 'kota_id' => 'required',
                 'prodi_id' => 'required'

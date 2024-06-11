@@ -23,6 +23,10 @@
                 <td>{{ $mahasiswa['tempat_lahir'] }}, {{ $mahasiswa['tanggal_lahir'] }}</td>
             </tr>
             <tr>
+                <td>Jenis Kelamin</td>
+                <td>{{ $mahasiswa['jk'] }}</td>
+            </tr>
+            <tr>
                 <td>Alamat</td>
                 <td>{{ $mahasiswa['alamat'] }}</td>
             </tr>

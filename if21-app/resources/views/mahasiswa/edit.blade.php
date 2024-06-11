@@ -41,6 +41,13 @@
                 @enderror
             </div>
             <div class="form-group">
+                <label for="jk">Jenis Kelamin</label>
+                <input type="text" class="form-control" id="jk" name="jk" value="{{ old('jk') ? old('jk') : $mahasiswa ->jk}}">
+                @error('jk')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="form-group">
                 <label for="alamat">Alamat</label>
                 <input type="text" class="form-control" id="alamat" name="alamat" value="{{ old('alamat') ? old('alamat') : $mahasiswa ->alamat}}">
                 @error('alamat')
@@ -52,7 +59,7 @@
                 <select name="kota_id" id="" class="form-control">
                     @foreach ($kota as $item)
                         <option value="{{ $item['id'] }}" {{ old('kota_id') == $item['id'] ? 'selected' : ($mahasiswa['kota_id'] == $item['id'] ? 'selected' : null) }}>{{ $item['nama'] }}</option>
-                    @endforeach
+                    @endforeach 
                 </select>
                 @error('kota_id')
                     <span class="text-danger">{{ $message }}</span>

@@ -40,6 +40,13 @@
                 @enderror <br>
               </div>
               <div class="form-group">
+                <label for="jk">Jenis Kelamin</label>
+                <input type="text" name="jk" id="" value="{{ old('jk') }}" class="form-control" >
+                @error('jk')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror <br>
+              </div>
+              <div class="form-group">
                 <label for="alamat">Alamat</label>
                 <input type="text" name="alamat" id="" value="{{ old('alamat') }}" class="form-control" >
                 @error('alamat')
