@@ -27,11 +27,13 @@
                         <td>{{ $item['nama'] }}</td>
                         <td>{{ $item['singkatan'] }}</td>
                         <td>
+                          @can('update', $item)
                           <form action="{{ route('fakultas.destroy', $item->id) }}" method="post">
                             @method('DELETE')
                             @csrf
                             <button type="submit" class="btn btn-sm btn-danger btn-rounded show_confirm" data-toggle="tooltip" data-nama="{{ $item['nama'] }}" title="hapus">Hapus</button>
                           </form>
+                          @endcan
                           </td>
                     </tr>
                     @endforeach

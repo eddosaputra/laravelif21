@@ -35,6 +35,11 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
+
+        if($request->user()->cannot('create', Mahasiswa::class)){
+            abort (403, 'Anda tidak memiliki akses');
+            //return redirect()->route('fakultas.index')->with('error', 'Anda tidak memiliki akses');
+        }
        // dd($request);
         $val = $request->validate([
             'npm' => 'required|unique:mahasiswas',

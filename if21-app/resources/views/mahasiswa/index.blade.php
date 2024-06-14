@@ -10,7 +10,9 @@
             <p class="card-description">
             List data mahasiswa
             </p>
+            @can('create', App\Models\Mahasiswa::class)
             <a href="{{ url('mahasiswa/create') }}" class="btn btn-primary btn-rounded btn-fw">Tambah</a>
+            @endcan
             <div class="table-responsive">
               <table class="table table-hover">
                 <thead>
@@ -32,12 +34,16 @@
                         <td>{{ $item->kota->nama }}</td>
                         <td>
                         <a href="{{ route('mahasiswa.show', $item['id']) }}" class="btn btn-sm btn-info btn-rounded">Show</a>
+                        @can('update', $item)
                         <a href="{{ route('mahasiswa.edit', $item['id']) }}" class="btn btn-sm btn-warning btn-rounded">Edit</a>
+                        @endcan
+                        @can('delete', $item)
                         <form action="{{ route('mahasiswa.destroy', $item->id) }}" method="post" style="display: inline">
                           @method('DELETE')
                           @csrf
                           <button type="submit" class="btn btn-sm btn-danger btn-rounded show_confirm" data-toggle="tooltip" data-nama="{{ $item['nama'] }}" title="hapus">Hapus</button>
                         </form>
+                        @endcan
                       </td>
                     </tr>
                     @endforeach

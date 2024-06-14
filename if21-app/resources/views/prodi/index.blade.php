@@ -9,7 +9,9 @@
             <p class="card-description">
             List program studi
             </p>
+            @can('create', App\Models\Prodi::class)
             <a href="{{ url('prodi/create') }}" class="btn btn-primary btn-rounded btn-fw">Tambah</a>
+            @endcan
             <div class="table-responsive">
               <table class="table table-hover">
                 <thead>
@@ -26,11 +28,13 @@
                         <td>{{ $item['fakultas'] ['nama'] }}</td>
                         <td>{{ $item['fakultas'] ['singkatan'] }}</td>
                         <td>
+                          @can('update', $item)
                           <form action="{{ route('prodi.destroy', $item->id) }}" method="post">
                             @method('DELETE')
                             @csrf
                             <button type="submit" class="btn btn-sm btn-danger btn-rounded show_confirm" data-toggle="tooltip" data-nama="{{ $item['nama'] }}" title="hapus">Hapus</button>
                           </form>
+                          @endcan
                         </td>
                     </tr>
                     @endforeach
